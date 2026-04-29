@@ -1,0 +1,2634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Fusion Capital Advisors — Investment Banking</title>
+<meta name="description" content="Fusion Capital Advisors is a Delhi-based boutique investment banking firm advising on mergers and acquisitions, capital raising, and strategic transactions across India and select cross-border corridors." />
+<meta name="theme-color" content="#0E1A2B" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     FUSION CAPITAL ADVISORS — v2
+     Editorial-institutional. Single file. No dependencies.
+     ============================================================ */
+
+  :root {
+    --ink:       #0E1A2B;
+    --ink-2:     #16243A;
+    --ink-deep:  #070D17;
+    --paper:     #F5F1E8;
+    --paper-2:   #EDE7D8;
+    --rule:      rgba(14, 26, 43, 0.16);
+    --rule-2:    rgba(14, 26, 43, 0.32);
+    --muted:     #5A6373;
+    --bronze:    #8C6A3D;
+    --bronze-2:  #B98E55;
+
+    --serif:  'Cormorant Garamond', 'Times New Roman', serif;
+    --sans:   'Inter Tight', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --mono:   'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --pad-x:  clamp(20px, 5vw, 96px);
+    --gutter: clamp(16px, 2.4vw, 32px);
+
+    --r-sm: 4px;
+    --r-md: 6px;
+    --r-lg: 10px;
+
+    --ease:   cubic-bezier(0.22, 0.61, 0.36, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  /* ---------- Custom cursor (desktop only) ---------- */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot {
+    width: 5px; height: 5px;
+    background: #F5F1E8;
+    transition: transform 0.1s var(--ease-out);
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid #F5F1E8;
+    transition: width 0.32s var(--ease-out), height 0.32s var(--ease-out), opacity 0.3s ease;
+    opacity: 0.7;
+  }
+  .cursor-ring.is-grow { width: 64px; height: 64px; opacity: 1; border-color: #F5F1E8; }
+  body.has-cursor { cursor: none; }
+  body.has-cursor a, body.has-cursor button { cursor: none; }
+  @media (hover: none), (max-width: 900px) {
+    .cursor-dot, .cursor-ring { display: none !important; }
+    body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: auto; }
+  }
+
+  /* ---------- Type ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink); opacity: 0.7;
+  }
+  p { margin: 0 0 1em; }
+  .hairline { height: 1px; background: var(--rule); border: 0; margin: 0; }
+
+  /* ---------- Layout primitives ---------- */
+  .container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+  }
+  .section {
+    padding-top: clamp(80px, 11vw, 160px);
+    padding-bottom: clamp(80px, 11vw, 160px);
+    position: relative;
+  }
+  .section + .section { border-top: 1px solid var(--rule); }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: clamp(48px, 6vw, 88px);
+  }
+  @media (min-width: 880px) {
+    .section-header { grid-template-columns: 1.5fr 2.5fr; gap: var(--gutter); align-items: end; }
+  }
+  .section-header .marker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  .section-header .marker::before {
+    content: ""; display: inline-block;
+    width: 28px; height: 1px; background: var(--ink);
+    transform: translateY(-4px);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 5.2vw, 64px);
+    line-height: 1.02; letter-spacing: -0.012em;
+    margin: 0; max-width: 18ch;
+  }
+  .section-title em { font-style: italic; font-weight: 300; }
+
+  /* ============================================================
+     LOADER
+     ============================================================ */
+  .curtain {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--ink-deep);
+    display: grid; place-items: center;
+    color: var(--paper);
+    transition: transform 1.1s var(--ease-out);
+  }
+  .curtain.lifted { transform: translateY(-100%); }
+  .curtain-lockup {
+    display: flex; flex-direction: column; align-items: center;
+    color: var(--paper);
+    opacity: 0;
+    animation: curtainFade 0.8s var(--ease-out) 0.15s forwards;
+  }
+  @keyframes curtainFade { to { opacity: 1; } }
+  .curtain-logo-img {
+    width: 320px; max-width: 70vw; height: auto;
+    filter: invert(1) contrast(1.05);
+    mix-blend-mode: lighten;
+  }
+  .curtain-mono {
+    display: inline-flex; align-items: flex-start;
+    line-height: 1;
+    margin-bottom: 22px;
+    color: var(--paper);
+  }
+  .curtain-mono .mono-letter-F {
+    width: 56px; height: auto; color: var(--paper); flex-shrink: 0;
+  }
+  .curtain-mono .mono-letter-f {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 0.85;
+    color: var(--paper);
+    margin-left: -0.42em;
+    margin-top: -0.05em;
+  }
+  .curtain-wordmark {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: 0.26em;
+    line-height: 1;
+    margin-bottom: 14px;
+    padding-left: 0.26em;
+  }
+  .curtain-sub {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    color: rgba(245, 241, 232, 0.7);
+    padding-left: 0.32em;
+  }
+
+  /* ============================================================
+     HEADER / NAV
+     ============================================================ */
+  .site-header {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(245, 241, 232, 0.86);
+    backdrop-filter: saturate(120%) blur(10px);
+    -webkit-backdrop-filter: saturate(120%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.4s var(--ease);
+  }
+  .site-header.is-dark {
+    background: rgba(7, 13, 23, 0.78);
+    border-bottom-color: rgba(245, 241, 232, 0.14);
+    color: var(--paper);
+  }
+  .site-header.is-dark .brand,
+  .site-header.is-dark .nav-links a,
+  .site-header.is-dark .nav-cta { color: var(--paper); }
+  .site-header.is-dark .nav-cta { border-color: var(--paper); }
+  .site-header.is-dark .nav-cta:hover { background: var(--paper); color: var(--ink); }
+  .site-header.is-dark .menu-toggle span { background: var(--paper); }
+  .site-header.is-dark .nav-links a::after { background: var(--paper); }
+  .site-header.is-dark .brand .mark svg path { fill: var(--paper); }
+
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 76px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .brand .mark {
+    display: inline-flex; align-items: center;
+    flex-shrink: 0;
+    height: 44px;
+  }
+  .header-logo-img {
+    height: 44px;
+    width: auto;
+    transition: filter 0.4s var(--ease);
+    mix-blend-mode: multiply;
+  }
+  .site-header.is-dark .header-logo-img {
+    filter: invert(1) contrast(1.05);
+    mix-blend-mode: lighten;
+  }
+  .brand .word {
+    display: none;
+  }
+
+  .nav-links {
+    display: none;
+    gap: 36px;
+    list-style: none; margin: 0; padding: 0;
+  }
+  @media (min-width: 980px) { .nav-links { display: flex; } }
+  .nav-links a {
+    position: relative;
+    font-size: 13px; letter-spacing: 0.06em;
+    padding: 6px 0;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--ink);
+    transition: right 0.4s var(--ease);
+  }
+  .nav-links a:hover::after { right: 0; }
+
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 40px; padding: 0 18px;
+    border: 1px solid var(--ink);
+    border-radius: var(--r-sm);
+    color: var(--ink);
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: background 0.3s var(--ease), color 0.3s var(--ease);
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--paper); }
+  .nav-cta svg { width: 12px; height: 12px; }
+
+  .menu-toggle { display: inline-flex; flex-direction: column; gap: 5px; padding: 8px; }
+  @media (min-width: 980px) { .menu-toggle { display: none; } }
+  .menu-toggle span { width: 22px; height: 1px; background: var(--ink); display: block; }
+
+  .drawer {
+    position: fixed; inset: 0; z-index: 80;
+    background: var(--paper);
+    transform: translateY(-100%);
+    transition: transform 0.45s var(--ease);
+    display: flex; flex-direction: column;
+  }
+  .drawer.open { transform: translateY(0); }
+  .drawer .drawer-top {
+    height: 76px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--pad-x); border-bottom: 1px solid var(--rule);
+  }
+  .drawer .drawer-close { font-size: 28px; padding: 8px 16px; }
+  .drawer ul {
+    list-style: none; margin: 0; padding: 40px var(--pad-x);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .drawer ul a {
+    display: block;
+    font-family: var(--serif); font-size: clamp(32px, 8vw, 56px);
+    line-height: 1.1; padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .drawer ul a em { font-style: italic; font-weight: 300; color: var(--muted); font-size: 0.5em; margin-left: 12px; vertical-align: middle; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: clamp(640px, 96vh, 1000px);
+    color: var(--paper);
+    overflow: hidden;
+    isolation: isolate;
+    display: flex; align-items: flex-end;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: -2;
+    background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2400&q=80');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 22s ease-out forwards;
+    filter: grayscale(100%) contrast(1.05);
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(7, 13, 23, 0.55) 0%, rgba(7, 13, 23, 0.78) 60%, rgba(7, 13, 23, 0.94) 100%),
+      linear-gradient(45deg, rgba(14, 26, 43, 0.85) 0%, rgba(22, 36, 58, 0.55) 100%);
+    mix-blend-mode: multiply;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background-image: linear-gradient(to right, rgba(245, 241, 232, 0.06) 1px, transparent 1px);
+    background-size: calc(100%/12) 100%;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 80%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 80%, transparent);
+  }
+  @media (max-width: 720px) {
+    .hero::after { background-size: calc(100%/4) 100%; }
+  }
+
+  .hero-inner {
+    width: 100%;
+    padding-top: clamp(72px, 11vw, 140px);
+    padding-bottom: clamp(56px, 7vw, 96px);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-meta {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    margin-top: clamp(36px, 5vw, 56px);
+    padding-top: 32px;
+    border-top: 1px solid rgba(245, 241, 232, 0.22);
+    text-align: left;
+  }
+  /* ---------- Hero logo lockup ---------- */
+  .hero-lockup {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    margin: 0 auto clamp(36px, 5vw, 64px);
+  }
+  .hero-logo-img {
+    width: clamp(280px, 36vw, 480px);
+    height: auto;
+    /* JPEG has cream bg + navy logo. Invert flips both:
+       cream → navy (matches hero bg, disappears),
+       navy → cream/paper (the visible logo). */
+    filter: invert(1) contrast(1.05);
+    mix-blend-mode: lighten;
+  }
+
+  /* ---------- Hero eyebrow (legacy, kept for old markup compatibility) ---------- */
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.85);
+    margin-bottom: clamp(28px, 4vw, 48px);
+  }
+  .hero-eyebrow .dot {
+    width: 7px; height: 7px;
+    background: var(--bronze-2); border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(185, 142, 85, 0.55);
+    animation: pulse 2.6s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(185, 142, 85, 0.45); }
+    70%{ box-shadow: 0 0 0 14px rgba(185, 142, 85, 0); }
+    100%{ box-shadow: 0 0 0 0 rgba(185, 142, 85, 0); }
+  }
+  .hero-eyebrow .sep { width: 24px; height: 1px; background: rgba(245, 241, 232, 0.45); }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(38px, 7vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.014em;
+    margin: 0 0 36px;
+    max-width: 18ch;
+    color: var(--paper);
+    text-align: center;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero-headline em { font-style: italic; font-weight: 300; }
+  .hero-headline .amp {
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    color: var(--bronze-2);
+  }
+
+  .reveal-line { display: block; overflow: hidden; }
+  .reveal-line > span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: lineRise 1.05s var(--ease-out) forwards;
+  }
+  @keyframes lineRise { to { transform: translateY(0); } }
+  .reveal-line.d1 > span { animation-delay: 1.2s; }
+  .reveal-line.d2 > span { animation-delay: 1.32s; }
+  .reveal-line.d3 > span { animation-delay: 1.44s; }
+  .reveal-line.d4 > span { animation-delay: 1.56s; }
+
+  .fade-in {
+    opacity: 0; transform: translateY(12px);
+    animation: fadeRise 1s var(--ease-out) forwards;
+  }
+  .fade-in.d1 { animation-delay: 1.7s; }
+  .fade-in.d2 { animation-delay: 1.85s; }
+  .fade-in.d3 { animation-delay: 2.0s; }
+  @keyframes fadeRise { to { opacity: 1; transform: translateY(0); } }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    margin-top: clamp(36px, 5vw, 56px);
+    padding-top: 32px;
+    border-top: 1px solid rgba(245, 241, 232, 0.22);
+  }
+  @media (min-width: 720px) {
+    .hero-meta { grid-template-columns: 1.4fr 1fr auto; align-items: end; }
+  }
+  .hero-meta .desc {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(18px, 1.7vw, 22px); line-height: 1.5;
+    max-width: 42ch; color: rgba(245, 241, 232, 0.92);
+  }
+  .hero-meta .stamp {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.72); line-height: 1.9;
+  }
+  .hero-meta .stamp strong {
+    color: var(--paper); font-weight: 500; display: block;
+  }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
+  @media (max-width: 719px) {
+    .hero-ctas { justify-content: flex-start; }
+  }
+
+  .btn-primary, .btn-ghost {
+    --magnet-x: 0; --magnet-y: 0;
+    display: inline-flex; align-items: center; gap: 12px;
+    height: 52px; padding: 0 24px;
+    border-radius: var(--r-sm);
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    transition: transform 0.4s var(--ease-out), background 0.3s var(--ease), color 0.3s var(--ease);
+    transform: translate(var(--magnet-x), var(--magnet-y));
+    will-change: transform;
+  }
+  .btn-primary { background: var(--paper); color: var(--ink); }
+  .btn-primary:hover { background: var(--bronze-2); color: var(--ink); }
+  .btn-primary svg { transition: transform 0.35s var(--ease); }
+  .btn-primary:hover svg { transform: translateX(4px); }
+  .btn-ghost { border: 1px solid var(--paper); color: var(--paper); }
+  .btn-ghost:hover { background: var(--paper); color: var(--ink); }
+
+  .btn-on-light { background: var(--ink); color: var(--paper); }
+  .btn-on-light:hover { background: var(--ink-2); color: var(--paper); }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 28px; left: var(--pad-x);
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.65);
+    z-index: 5;
+  }
+  .scroll-cue .line {
+    width: 36px; height: 1px; background: rgba(245, 241, 232, 0.45);
+    position: relative; overflow: hidden;
+  }
+  .scroll-cue .line::after {
+    content: ""; position: absolute; left: -100%; top: 0;
+    width: 100%; height: 100%; background: var(--bronze-2);
+    animation: scrollLine 2.6s var(--ease-out) infinite;
+  }
+  @keyframes scrollLine {
+    0% { left: -100%; } 60% { left: 100%; } 100% { left: 100%; }
+  }
+
+  .hero-stamp {
+    position: absolute;
+    bottom: 28px; right: var(--pad-x);
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.65);
+    text-align: right; line-height: 1.7;
+    z-index: 5;
+  }
+  @media (max-width: 720px) { .hero-stamp { display: none; } }
+
+  /* ============================================================
+     MARQUEE TICKER
+     ============================================================ */
+  .ticker {
+    background: var(--ink-deep);
+    color: var(--paper);
+    border-top: 1px solid rgba(245, 241, 232, 0.15);
+    border-bottom: 1px solid rgba(245, 241, 232, 0.15);
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-track {
+    display: flex; gap: 64px;
+    padding: 22px 0;
+    width: max-content;
+    animation: tickerScroll 48s linear infinite;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 18px;
+    font-family: var(--serif); font-size: clamp(20px, 2vw, 28px);
+    font-weight: 400; letter-spacing: 0.005em;
+    white-space: nowrap;
+  }
+  .ticker-item em { font-style: italic; font-weight: 300; color: var(--bronze-2); }
+  .ticker-item .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(245, 241, 232, 0.4);
+  }
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .obs { opacity: 0; transform: translateY(22px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+  .obs.in { opacity: 1; transform: translateY(0); }
+
+  /* ============================================================
+     ABOUT
+     ============================================================ */
+  .about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 56px); }
+  @media (min-width: 880px) { .about-grid { grid-template-columns: 1.5fr 2.5fr; } }
+  .about-statement {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 40px);
+    line-height: 1.18; letter-spacing: -0.005em;
+    color: var(--ink); max-width: 28ch;
+  }
+  .about-statement em { font-style: italic; font-weight: 300; }
+  .about-body { color: var(--ink); max-width: 60ch; }
+  .about-body p { font-size: 16px; line-height: 1.7; }
+
+  .about-stats {
+    margin-top: clamp(48px, 6vw, 88px);
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    border: 0;
+  }
+  @media (min-width: 720px) { .about-stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    padding: clamp(24px, 3vw, 40px) clamp(20px, 2.4vw, 32px);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease-out);
+  }
+  .stat:hover {
+    background: var(--paper-2);
+    border-color: var(--rule-2);
+    transform: translateY(-2px);
+  }
+  .stat .num {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(40px, 5.2vw, 68px);
+    line-height: 1; letter-spacing: -0.01em;
+  }
+  .stat .num sup { font-size: 0.4em; vertical-align: top; color: var(--bronze); margin-left: 4px; }
+  .stat .label {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ============================================================
+     CAPABILITIES
+     ============================================================ */
+  .caps {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  @media (min-width: 720px) { .caps { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px){ .caps { grid-template-columns: repeat(4, 1fr); } }
+  .cap {
+    padding: clamp(28px, 3.4vw, 44px) clamp(20px, 2.4vw, 32px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    display: flex; flex-direction: column; gap: 16px;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease-out);
+    position: relative; overflow: hidden;
+    background: var(--paper);
+  }
+  .cap::before {
+    content: ""; position: absolute;
+    left: 0; bottom: 0; right: 0;
+    height: 2px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s var(--ease-out);
+    border-radius: 0 0 var(--r-md) var(--r-md);
+  }
+  .cap:hover {
+    background: var(--paper-2);
+    border-color: var(--rule-2);
+    transform: translateY(-2px);
+  }
+  .cap:hover::before { transform: scaleX(1); }
+  .cap .num {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; color: var(--muted);
+  }
+  .cap h3 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.15; letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .cap p { font-size: 14.5px; line-height: 1.6; color: var(--muted); margin: 0; }
+
+  /* ---------- Section backdrops ---------- */
+  #transactions {
+    position: relative;
+    isolation: isolate;
+  }
+  #transactions::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; width: 50%; height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    filter: grayscale(100%) contrast(0.95);
+    opacity: 0.06;
+    z-index: -1;
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 100%);
+            mask-image: linear-gradient(to left, #000 0%, transparent 100%);
+    pointer-events: none;
+  }
+  #sectors {
+    position: relative;
+    isolation: isolate;
+  }
+  #sectors::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: grayscale(100%) contrast(1.05);
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) {
+    #sectors::before { background-attachment: scroll; }
+  }
+
+  /* Section divider strip — full-bleed aerospace moment between Capabilities and Transactions */
+  .strip {
+    position: relative;
+    height: clamp(220px, 30vh, 360px);
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--paper);
+    display: flex; align-items: center;
+  }
+  .strip::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -2;
+    background-image: url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=2400&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) contrast(1.1);
+    transform: scale(1.05);
+    transition: transform 1.4s var(--ease-out);
+  }
+  .strip:hover::before { transform: scale(1.0); }
+  .strip-2::before {
+    background-image: url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=2400&q=80');
+  }
+  .strip::after {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(7, 13, 23, 0.92) 0%, rgba(7, 13, 23, 0.55) 50%, rgba(7, 13, 23, 0.85) 100%);
+  }
+  .strip-quote {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(22px, 3.2vw, 38px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    max-width: 28ch;
+    margin: 0;
+  }
+  .strip-quote .accent { color: var(--bronze-2); }
+  .strip-attr {
+    margin-top: 18px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.65);
+  }
+
+  /* ============================================================
+     TRACK RECORD
+     ============================================================ */
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 32px;
+  }
+  .chip {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    border: 1px solid var(--rule-2);
+    border-radius: var(--r-sm);
+    color: var(--ink);
+    transition: all 0.25s var(--ease);
+  }
+  .chip:hover { border-color: var(--ink); }
+  .chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .deals {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .deal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: clamp(20px, 2.6vw, 32px) clamp(16px, 2vw, 28px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    position: relative;
+    cursor: pointer;
+  }
+  @media (min-width: 880px) {
+    .deal {
+      grid-template-columns: 110px 1.5fr 1fr 0.9fr 24px;
+      align-items: baseline;
+      gap: clamp(20px, 2.4vw, 36px);
+    }
+  }
+  .deal:hover {
+    background: var(--paper-2);
+    border-color: var(--rule-2);
+    transform: translateX(4px);
+    box-shadow: 0 4px 24px rgba(14, 26, 43, 0.06);
+  }
+  .deal .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    opacity: 0.55;
+  }
+  .deal .name {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  .deal .name em {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  .deal .desc {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 48ch;
+  }
+  .deal .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .deal .tag {
+    font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid var(--rule-2);
+    border-radius: var(--r-sm);
+    color: var(--ink);
+    background: rgba(14, 26, 43, 0.02);
+  }
+  .deal .arrow {
+    color: var(--ink); opacity: 0.4;
+    transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
+    justify-self: end;
+    font-size: 18px; line-height: 1;
+    font-family: var(--sans); font-weight: 300;
+  }
+  .deal:hover .arrow { opacity: 1; }
+  .deal.is-open .arrow { transform: rotate(45deg); opacity: 1; }
+
+  .deal-detail {
+    grid-column: 1 / -1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s var(--ease-out), margin-top 0.4s var(--ease);
+  }
+  .deal.is-open .deal-detail { max-height: 520px; margin-top: 8px; }
+  .deal-detail-inner {
+    display: grid; grid-template-columns: 1fr; gap: 24px;
+    padding: 24px clamp(8px, 1.5vw, 20px) 8px;
+    border-top: 1px dashed var(--rule);
+  }
+  @media (min-width: 880px) {
+    .deal-detail-inner { grid-template-columns: 1fr 1fr; gap: 56px; padding-left: 130px; }
+  }
+  .deal-detail-inner p {
+    font-family: var(--sans);
+    font-size: 14px; line-height: 1.7; color: var(--ink); max-width: 56ch;
+  }
+  .deal-detail-inner dl {
+    margin: 0; display: grid; grid-template-columns: 130px 1fr; gap: 10px 16px;
+    font-size: 13px; align-content: start;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .deal-detail-inner dt {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .deal-detail-inner dd {
+    margin: 0;
+    color: var(--ink);
+    line-height: 1.55;
+    font-family: var(--sans);
+    font-size: 13.5px;
+  }
+
+  .deals-note {
+    margin-top: 32px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.12em; color: var(--muted);
+    line-height: 1.7; max-width: 80ch;
+  }
+
+  /* ============================================================
+     LEADERSHIP
+     ============================================================ */
+  .leaders { display: grid; grid-template-columns: 1fr; gap: clamp(40px, 5vw, 80px); }
+  @media (min-width: 880px) { .leaders { grid-template-columns: 1fr 1fr; } }
+  .leader {
+    display: flex; flex-direction: column; gap: 24px;
+    padding: clamp(28px, 3vw, 40px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  .leader:hover {
+    border-color: var(--rule-2);
+    background: var(--paper-2);
+  }
+  .leader .role {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .leader h3 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(34px, 4vw, 48px);
+    line-height: 1.05; letter-spacing: -0.012em;
+    margin: 0;
+  }
+  .leader .bio { color: var(--ink); font-size: 15.5px; line-height: 1.7; max-width: 50ch; }
+  .leader .focus {
+    display: grid; grid-template-columns: 130px 1fr;
+    gap: 12px;
+    padding-top: 18px; border-top: 1px solid var(--rule);
+    font-size: 14px; line-height: 1.6;
+    margin: 0;
+  }
+  .leader .focus dt {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  }
+  .leader .focus dd { margin: 0; color: var(--ink); }
+  .leader .focus a {
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.3s var(--ease);
+  }
+  .leader .focus a:hover { border-bottom-color: var(--ink); }
+
+  /* ============================================================
+     SECTORS
+     ============================================================ */
+  .sectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (min-width: 720px) { .sectors { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1080px){ .sectors { grid-template-columns: repeat(5, 1fr); } }
+  .sector {
+    padding: clamp(20px, 2.4vw, 32px) clamp(16px, 1.8vw, 24px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    display: flex; flex-direction: column; gap: 8px;
+    min-height: 130px;
+    transition: background 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease-out);
+    position: relative;
+  }
+  .sector:hover {
+    background: var(--paper-2);
+    border-color: var(--rule-2);
+    transform: translateY(-2px);
+  }
+  .sector .num {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.16em; color: var(--muted);
+  }
+  .sector .name {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 400; line-height: 1.15; margin-top: auto;
+  }
+
+  /* ============================================================
+     INDUSTRY FOCUS (deep dive)
+     ============================================================ */
+  .industry-stack {
+    display: grid; grid-template-columns: 1fr; gap: 16px;
+  }
+  @media (min-width: 880px) {
+    .industry-stack {
+      grid-template-columns: 1.6fr 1fr;
+      grid-auto-rows: auto;
+    }
+    .industry-priority {
+      grid-row: span 2;
+    }
+  }
+  .industry {
+    padding: clamp(28px, 3.4vw, 48px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    transition: border-color 0.4s var(--ease), background 0.4s var(--ease), transform 0.4s var(--ease-out);
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .industry:hover {
+    border-color: var(--rule-2);
+    background: var(--paper-2);
+    transform: translateY(-2px);
+  }
+  .industry-priority {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .industry-priority::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background-image: url('https://images.unsplash.com/photo-1569629743817-70d8db6c323b?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) contrast(1.1);
+    opacity: 0.18;
+  }
+  .industry-priority:hover {
+    background: var(--ink-deep);
+    border-color: var(--ink-deep);
+  }
+  .industry-priority h3, .industry-priority p { color: var(--paper); }
+  .industry-priority .industry-lede { color: rgba(245, 241, 232, 0.92); }
+
+  .industry-meta {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .industry-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+  .industry-priority .industry-num {
+    color: rgba(245, 241, 232, 0.55);
+  }
+  .industry-flag {
+    font-family: var(--mono);
+    font-size: 9.5px; font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--r-sm);
+    background: var(--bronze-2);
+    color: var(--ink);
+  }
+  .flag-emerging {
+    background: transparent;
+    color: var(--bronze);
+    border: 1px solid var(--bronze);
+  }
+  .industry h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.014em;
+    margin: 0;
+  }
+  .industry-priority h3 { font-size: clamp(36px, 4.4vw, 56px); }
+  .industry-lede {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.45;
+    font-weight: 300;
+    margin: 0;
+  }
+  .industry p {
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0;
+    max-width: 60ch;
+  }
+  .industry-priority p {
+    color: rgba(245, 241, 232, 0.78);
+  }
+  .industry-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(245, 241, 232, 0.18);
+  }
+  .industry-stats > div {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .industry-stats .big {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1;
+    color: var(--paper);
+  }
+  .industry-stats .small {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.55);
+  }
+
+  /* ============================================================
+     WHY FUSION (dark)
+     ============================================================ */
+  .why-section {
+    background: var(--ink);
+    color: var(--paper);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .why-section::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -2;
+    background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2400&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: grayscale(100%) contrast(1.1) brightness(0.5);
+    opacity: 0.32;
+  }
+  .why-section::after {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(7, 13, 23, 0.85) 0%, rgba(14, 26, 43, 0.78) 50%, rgba(7, 13, 23, 0.92) 100%);
+  }
+  @media (max-width: 720px) {
+    .why-section::before { background-attachment: scroll; }
+  }
+  .why-section ::selection { background: var(--paper); color: var(--ink); }
+  .why-section .section-title { color: var(--paper); }
+  .why-section .section-header .marker { color: rgba(245, 241, 232, 0.6); }
+  .why-section .section-header .marker::before { background: var(--paper); }
+
+  .pillars { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 720px) { .pillars { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px){ .pillars { grid-template-columns: repeat(3, 1fr); } }
+  .pillar {
+    padding: clamp(28px, 3.4vw, 44px) clamp(20px, 2.4vw, 32px);
+    border: 1px solid rgba(245, 241, 232, 0.16);
+    border-radius: var(--r-md);
+    background: rgba(14, 26, 43, 0.55);
+    display: flex; flex-direction: column; gap: 16px;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+  }
+  .pillar:hover {
+    background: rgba(14, 26, 43, 0.75);
+    border-color: rgba(245, 241, 232, 0.32);
+    transform: translateY(-2px);
+  }
+  .pillar .num {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; color: rgba(245, 241, 232, 0.6);
+  }
+  .pillar h3 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.15; margin: 0;
+  }
+  .pillar p {
+    font-size: 14.5px; line-height: 1.65;
+    color: rgba(245, 241, 232, 0.75); margin: 0;
+  }
+
+  /* ============================================================
+     INSIGHTS
+     ============================================================ */
+  .insights-grid {
+    display: grid; grid-template-columns: 1fr; gap: 16px;
+  }
+  @media (min-width: 720px) { .insights-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px){ .insights-grid { grid-template-columns: repeat(3, 1fr); } }
+  .insight {
+    padding: clamp(28px, 3vw, 40px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    display: flex; flex-direction: column; gap: 16px;
+    transition: border-color 0.4s var(--ease), background 0.4s var(--ease), transform 0.4s var(--ease-out);
+    cursor: pointer;
+  }
+  .insight:hover {
+    border-color: var(--ink);
+    background: var(--paper-2);
+    transform: translateY(-2px);
+  }
+  .insight-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .insight-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bronze);
+  }
+  .insight-date {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+  }
+  .insight h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(20px, 1.9vw, 24px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .insight p {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+  }
+  .insight-link {
+    margin-top: auto;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    transition: color 0.3s var(--ease);
+  }
+  .insight:hover .insight-link { color: var(--bronze); }
+
+  .insights-note {
+    margin-top: 32px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.12em; color: var(--muted);
+    line-height: 1.7; max-width: 60ch;
+  }
+
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: clamp(40px, 5vw, 80px); align-items: start;
+  }
+  @media (min-width: 880px) { .contact-grid { grid-template-columns: 1.4fr 1fr; } }
+  .contact-headline {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 0.98; letter-spacing: -0.014em;
+    max-width: 16ch;
+  }
+  .contact-headline em { font-style: italic; font-weight: 300; }
+  .contact-headline a {
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color 0.3s var(--ease);
+  }
+  .contact-headline a:hover { border-color: var(--ink); }
+  .contact-card {
+    padding: clamp(24px, 3vw, 36px);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    display: flex; flex-direction: column; gap: 22px;
+  }
+  .contact-card dl {
+    margin: 0;
+    display: grid; grid-template-columns: 110px 1fr;
+    gap: 12px 24px; font-size: 14px;
+  }
+  .contact-card dt {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  }
+  .contact-card dd { margin: 0; }
+  .contact-card a:not(.btn-primary):not(.btn-on-light) {
+    border-bottom: 1px solid var(--rule); transition: border-color 0.3s var(--ease);
+  }
+  .contact-card a:not(.btn-primary):not(.btn-on-light):hover { border-bottom-color: var(--ink); }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .site-footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(56px, 7vw, 96px) 0 32px;
+  }
+  .site-footer .ft-grid {
+    display: grid; grid-template-columns: 1fr; gap: 40px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(245, 241, 232, 0.18);
+  }
+  @media (min-width: 720px) { .site-footer .ft-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+  .ft-brand {
+    display: flex; flex-direction: column; gap: 18px; max-width: 36ch;
+  }
+  .ft-lockup {
+    display: flex; align-items: center;
+  }
+  .footer-logo-img {
+    width: 200px; height: auto;
+    filter: invert(1) contrast(1.05);
+    mix-blend-mode: lighten;
+  }
+  .ft-word {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: 0.24em;
+    line-height: 1;
+    padding-left: 0.24em;
+  }
+  .ft-sub {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    color: rgba(245, 241, 232, 0.55);
+    margin-top: 6px;
+    padding-left: 0.22em;
+  }
+  .ft-brand .word {
+    letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: 13px; font-weight: 500;
+  }
+  .ft-brand p { font-size: 14px; line-height: 1.7; color: rgba(245, 241, 232, 0.7); }
+  .ft-col h4 {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.55);
+    margin: 0 0 18px; font-weight: 500;
+  }
+  .ft-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px; font-size: 14px;
+  }
+  .ft-col a { color: rgba(245, 241, 232, 0.85); transition: color 0.3s var(--ease); }
+  .ft-col a:hover { color: var(--bronze-2); }
+
+  .ft-mark {
+    margin: 56px 0 28px;
+    font-family: var(--serif);
+    font-size: clamp(80px, 14vw, 220px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: rgba(245, 241, 232, 0.06);
+    user-select: none;
+    text-align: center;
+    overflow: hidden;
+  }
+  .ft-mark em { font-style: italic; font-weight: 300; }
+
+  .ft-meta {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.55);
+    padding-top: 24px;
+    border-top: 1px solid rgba(245, 241, 232, 0.18);
+  }
+  .ft-meta .signature { color: rgba(245, 241, 232, 0.85); }
+
+  /* ============================================================
+     INSIGHT READING PANEL
+     ============================================================ */
+  .insight-overlay {
+    position: fixed; inset: 0; z-index: 90;
+    background: rgba(7, 13, 23, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+  }
+  .insight-overlay.is-open {
+    opacity: 1; pointer-events: auto;
+  }
+  .insight-panel {
+    position: fixed;
+    top: 0; right: 0;
+    width: 100%;
+    max-width: 760px;
+    height: 100vh;
+    max-height: 100vh;
+    z-index: 100;
+    background: var(--paper);
+    color: var(--ink);
+    transform: translateX(100%);
+    transition: transform 0.55s var(--ease-out);
+    overflow-y: auto;
+    box-shadow: -32px 0 80px rgba(7, 13, 23, 0.18);
+  }
+  .insight-panel.is-open { transform: translateX(0); }
+  .insight-close {
+    position: sticky;
+    top: 16px;
+    margin-left: auto; margin-right: 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    color: var(--ink);
+    cursor: pointer;
+    z-index: 2;
+    float: right;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .insight-close:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .insight-article {
+    padding: clamp(48px, 6vw, 88px) clamp(28px, 5vw, 80px);
+    max-width: 680px;
+  }
+  .insight-article[hidden] { display: none; }
+  .insight-article-head {
+    margin-bottom: clamp(40px, 5vw, 56px);
+    padding-bottom: clamp(28px, 3vw, 40px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .insight-article-meta {
+    display: flex; gap: 16px; align-items: center;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .insight-article-meta .insight-cat {
+    color: var(--bronze);
+  }
+  .insight-article-meta .insight-date {
+    color: var(--muted);
+  }
+  .insight-article h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(30px, 4.4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.012em;
+    margin: 0 0 24px;
+    color: var(--ink);
+  }
+  .insight-lede {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 24px;
+  }
+  .insight-byline {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .insight-byline .byline-sep {
+    width: 16px; height: 1px; background: var(--rule-2);
+  }
+  .insight-body { color: var(--ink); }
+  .insight-body h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: clamp(36px, 4vw, 56px) 0 16px;
+    color: var(--ink);
+  }
+  .insight-body h2:first-child { margin-top: 0; }
+  .insight-body p {
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .insight-body p strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .insight-pullquote {
+    font-family: var(--serif) !important;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2.4vw, 28px) !important;
+    line-height: 1.35 !important;
+    color: var(--ink) !important;
+    margin: clamp(36px, 4vw, 56px) 0 !important;
+    padding: 24px 0 24px 28px;
+    border-left: 2px solid var(--bronze-2);
+    max-width: 38ch;
+  }
+  .insight-article-foot {
+    margin-top: clamp(48px, 5vw, 80px);
+    padding-top: clamp(28px, 3vw, 40px);
+    border-top: 1px solid var(--rule);
+  }
+  .insight-article-foot p {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+  }
+  .insight-article-foot a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-2);
+    transition: border-color 0.3s var(--ease);
+  }
+  .insight-article-foot a:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  body.panel-open {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+    .reveal-line > span { transform: none; }
+    .fade-in { opacity: 1; transform: none; }
+    .curtain { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="curtain-lockup">
+    <img src="logo.jpeg" alt="" class="curtain-logo-img" />
+  </div>
+</div>
+
+<header class="site-header is-dark" id="site-header">
+  <div class="container nav" role="banner">
+    <a class="brand" href="#top" aria-label="Fusion Capital Advisors — home">
+      <span class="mark" aria-hidden="true">
+        <img src="logo.jpeg" alt="" class="header-logo-img" />
+      </span>
+      <span class="word">Fusion <span class="sub">Capital Advisors</span></span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#firm">Firm</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#transactions">Transactions</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#sectors">Industries</a></li>
+        <li><a href="#insights">Insights</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="nav-cta">
+      <span>Discuss a mandate</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer" id="menu-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<aside class="drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="drawer-top">
+    <span class="brand"><span class="word">Fusion</span></span>
+    <button class="drawer-close" aria-label="Close menu" id="drawer-close">×</button>
+  </div>
+  <ul>
+    <li><a href="#firm" data-close>Firm <em>01</em></a></li>
+    <li><a href="#capabilities" data-close>Capabilities <em>02</em></a></li>
+    <li><a href="#transactions" data-close>Transactions <em>03</em></a></li>
+    <li><a href="#leadership" data-close>Leadership <em>04</em></a></li>
+    <li><a href="#sectors" data-close>Industries <em>05</em></a></li>
+    <li><a href="#insights" data-close>Insights <em>06</em></a></li>
+    <li><a href="#contact" data-close>Engage <em>07</em></a></li>
+  </ul>
+</aside>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-lockup fade-in d1" aria-label="Fusion Capital Advisors — Investment Banking">
+        <img src="logo.jpeg" alt="Fusion Capital Advisors — Investment Banking" class="hero-logo-img" />
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="reveal-line d1"><span>Capital, <em>conviction,</em></span></span>
+        <span class="reveal-line d2"><span>and considered</span></span>
+        <span class="reveal-line d3"><span><em>counsel</em> <span class="amp">for</span></span></span>
+        <span class="reveal-line d4"><span>defining transactions.</span></span>
+      </h1>
+
+      <div class="hero-meta fade-in d2">
+        <p class="desc">
+          Fusion Capital Advisors is a founder-led investment banking firm advising corporates, founders, and institutional investors on mergers and acquisitions, capital raising, and strategic transactions across India and select cross-border corridors.
+        </p>
+        <div class="stamp">
+          <strong>Est. India · Delhi NCR</strong>
+          35+ years of combined<br/>senior banking experience<br/>
+          Engaged by referral
+        </div>
+        <div class="hero-ctas">
+          <a href="#transactions" class="btn-primary" data-magnet>
+            <span>Selected transactions</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#contact" class="btn-ghost" data-magnet>Discuss a mandate</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue fade-in d3" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="line"></span>
+    </div>
+    <div class="hero-stamp fade-in d3">
+      M&amp;A · Capital Raise<br/>Strategic Advisory
+    </div>
+  </section>
+
+  <section class="ticker" aria-label="Practice areas">
+    <div class="ticker-track" id="ticker-track">
+      <div class="ticker-item"><span>Mergers &amp; Acquisitions</span><span class="dot"></span></div>
+      <div class="ticker-item"><span><em>Capital Raising</em></span><span class="dot"></span></div>
+      <div class="ticker-item"><span>Cross-Border Advisory</span><span class="dot"></span></div>
+      <div class="ticker-item"><span><em>Management Buyouts</em></span><span class="dot"></span></div>
+      <div class="ticker-item"><span>Strategic Counsel</span><span class="dot"></span></div>
+      <div class="ticker-item"><span><em>Transaction Structuring</em></span><span class="dot"></span></div>
+      <div class="ticker-item"><span>Corporate Finance</span><span class="dot"></span></div>
+      <div class="ticker-item"><span><em>Execution Support</em></span><span class="dot"></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="firm">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>01  —  The Firm</span></div>
+        <h2 class="section-title">A boutique advisory practice <em>built around the deal,</em> not the org chart.</h2>
+      </header>
+
+      <div class="about-grid">
+        <p class="about-statement obs">
+          We advise on transactions that materially shape the trajectory of a business — <em>sales of control, capital formation, cross-border combinations, and strategic realignments.</em>
+        </p>
+
+        <div class="about-body obs">
+          <p>
+            Fusion Capital Advisors is structured deliberately as a senior-led practice. Founders engage directly with founders and boards. Mandates are accepted selectively, executed quietly, and measured by outcome rather than activity.
+          </p>
+          <p>
+            Our coverage spans Indian mid-market corporates, growth-stage businesses, and family-owned enterprises evaluating succession, recapitalisation, or partnership with strategic and financial sponsors. We bring institutional rigour to the work — modelling, structuring, negotiation, diligence — without the layered handoffs that characterise larger houses.
+          </p>
+          <p>
+            Discretion is foundational. So is conviction in the position we take alongside our clients, all the way through close.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-stats obs">
+        <div class="stat">
+          <div class="num">35<sup>+</sup></div>
+          <div class="label">Years of combined<br/>senior banking experience</div>
+        </div>
+        <div class="stat">
+          <div class="num">10<sup>+</sup></div>
+          <div class="label">Sectors of active<br/>coverage</div>
+        </div>
+        <div class="stat">
+          <div class="num">02</div>
+          <div class="label">Co-founders engaged<br/>on every mandate</div>
+        </div>
+        <div class="stat">
+          <div class="num">∞</div>
+          <div class="label">Patience for the<br/>right transaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="capabilities">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>02  —  Capabilities</span></div>
+        <h2 class="section-title">Eight disciplines, <em>one roof.</em></h2>
+      </header>
+    </div>
+
+    <div class="container">
+      <div class="caps">
+        <article class="cap obs">
+          <span class="num">01</span>
+          <h3>Mergers &amp; Acquisitions</h3>
+          <p>Sell-side, buy-side, and merger advisory across control transactions, minority stake sales, and inorganic growth programmes.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">02</span>
+          <h3>Capital Raising</h3>
+          <p>Private equity, growth capital, family-office, and structured fundraising for companies at inflection.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">03</span>
+          <h3>Strategic Advisory</h3>
+          <p>Board-level counsel on portfolio strategy, defensive positioning, capital allocation, and partnership selection.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">04</span>
+          <h3>Transaction Structuring</h3>
+          <p>Bespoke deal architecture covering tax efficiency, governance rights, earn-outs, and downside protection.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">05</span>
+          <h3>Corporate Finance</h3>
+          <p>Valuation, financial modelling, capital structure work, and rigorous diligence preparation.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">06</span>
+          <h3>Cross-Border</h3>
+          <p>Inbound and outbound mandates with European, Japanese, and North American counterparties; jurisdictional fluency.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">07</span>
+          <h3>Management Buyouts</h3>
+          <p>Sponsor-backed MBO and MBI structures, including continuity planning and operating-team underwrite.</p>
+        </article>
+        <article class="cap obs">
+          <span class="num">08</span>
+          <h3>Execution Support</h3>
+          <p>Hands-on negotiation, diligence orchestration, and legal-documentation oversight from term sheet to close.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip" aria-hidden="true">
+    <div class="container">
+      <p class="strip-quote">
+        Engaged where the <span class="accent">stakes are highest</span> — control transactions, capital formation, cross-border combinations.
+      </p>
+      <div class="strip-attr">— The Firm</div>
+    </div>
+  </section>
+
+  <section class="section" id="transactions">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>03  —  Track Record</span></div>
+        <h2 class="section-title">Selected transaction <em>experience.</em></h2>
+      </header>
+
+      <div class="filters" role="tablist" aria-label="Filter transactions">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="ma">M&amp;A</button>
+        <button class="chip" data-filter="capital">Capital Raise</button>
+        <button class="chip" data-filter="mbo">MBO / Control</button>
+        <button class="chip" data-filter="cross">Cross-Border</button>
+      </div>
+
+      <ol class="deals" id="deals">
+
+        <li class="deal" data-cat="ma">
+          <span class="num">— 2025 —</span>
+          <div>
+            <div class="name">UDI Sales → AG Retail <em>Sole Financial Advisor · Sell-side</em></div>
+          </div>
+          <p class="desc">Exclusive sell-side advisor on the divestiture of UDI Sales Pvt. Ltd.'s plastic packaging business to AG Retail Private Limited.</p>
+          <div class="tags">
+            <span class="tag">Industrials</span>
+            <span class="tag">Packaging</span>
+            <span class="tag">Sell-Side</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>UDI Sales is a leading plastic packaging player in North India, manufacturing HDPE jars, PET bottles, and PET pre-form for the edible oil, distilleries, and dairy industries. AG Retail — with a three-decade legacy in plastic and related raw-materials trading — pursued forward integration into packaging manufacturing to leverage its sourcing strength.</p>
+              <dl>
+                <dt>Date</dt><dd>April 2025</dd>
+                <dt>Role</dt><dd>Sole Financial Advisor</dd>
+                <dt>Sector</dt><dd>Industrials · Rigid Plastics Packaging</dd>
+                <dt>Counterparties</dt><dd>UDI Sales Pvt. Ltd.<br/>AG Retail Pvt. Ltd.</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="ma cross">
+          <span class="num">— 2024 —</span>
+          <div>
+            <div class="name">Poggiopolini → Aero Fasteners <em>Sole Financial Advisor · India market entry</em></div>
+          </div>
+          <p class="desc">Sole financial advisor to the Poggiopolini Group on the acquisition of a majority stake in Aero Fasteners — marking the Group's official entry into India's aerospace and defence manufacturing ecosystem.</p>
+          <div class="tags">
+            <span class="tag">Aerospace &amp; Defence</span>
+            <span class="tag">Cross-Border</span>
+            <span class="tag">Buy-Side</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>A strategic partnership marking Poggiopolini Group's official entry into India's rapidly growing aerospace and defence manufacturing ecosystem. The transaction reflects the firm's depth in cross-border industrial transactions with Italian and broader European counterparties.</p>
+              <dl>
+                <dt>Year</dt><dd>2024</dd>
+                <dt>Role</dt><dd>Sole Financial Advisor to Poggiopolini Group</dd>
+                <dt>Sector</dt><dd>Aerospace &amp; Defence · Industrials</dd>
+                <dt>Counterparties</dt><dd>Poggiopolini Group (Italy)<br/>Aero Fasteners (India)</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="ma">
+          <span class="num">— 2023 —</span>
+          <div>
+            <div class="name">OkayGo → BetterPlace <em>Strategic acquisition · Workforce technology</em></div>
+          </div>
+          <p class="desc">Advisory on the acquisition of OkayGo by BetterPlace, the Jungle Ventures-backed workforce-management platform — BetterPlace's fourth strategic acquisition.</p>
+          <div class="tags">
+            <span class="tag">Technology</span>
+            <span class="tag">HR Tech</span>
+            <span class="tag">M&amp;A</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>The transaction extended BetterPlace's platform reach across blue-collar workforce mobilisation. The firm engaged closely with leadership at both companies through to closure.</p>
+              <dl>
+                <dt>Year</dt><dd>2023</dd>
+                <dt>Sector</dt><dd>Technology · Workforce Platforms</dd>
+                <dt>Structure</dt><dd>Strategic acquisition</dd>
+                <dt>Counterparties</dt><dd>BetterPlace (Jungle Ventures-backed)<br/>OkayGo</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="capital">
+          <span class="num">— 2023 —</span>
+          <div>
+            <div class="name">RAAHO <em>Growth-stage funding · Logistics technology</em></div>
+          </div>
+          <p class="desc">Partnered on RAAHO's funding round, a logistics-technology platform addressing efficiency in India's freight and trucking value chain. Round in excess of ₹20 Cr, with participation from Inflection Point Ventures, Roots Ventures, and Blume Founders Fund.</p>
+          <div class="tags">
+            <span class="tag">Logistics</span>
+            <span class="tag">Technology</span>
+            <span class="tag">Capital Raise</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>RAAHO is building infrastructure to modernise India's road-freight ecosystem. The firm partnered with the founder and team through the round — reflecting selective alignment with founder-led platforms.</p>
+              <dl>
+                <dt>Year</dt><dd>2023</dd>
+                <dt>Sector</dt><dd>Logistics-Tech · B2B SaaS</dd>
+                <dt>Investors</dt><dd>Inflection Point Ventures<br/>Roots Ventures · Blume Founders Fund</dd>
+                <dt>Round size</dt><dd>₹20+ Crore</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="capital">
+          <span class="num">— 2022 —</span>
+          <div>
+            <div class="name">Otipy <em>Series B led by WestBridge Capital · USD 32M</em></div>
+          </div>
+          <p class="desc">Senior-led advisory experience on Otipy's Series B funding round, led by WestBridge Capital. A defining round for India's social-commerce-meets-agritech category.</p>
+          <div class="tags">
+            <span class="tag">Agritech</span>
+            <span class="tag">Consumer Tech</span>
+            <span class="tag">Capital Raise</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>Otipy is led by founders Varun Khurana and Vikas Bothra, building a social-commerce model targeting fresh-produce distribution across Indian metros. The Series B at USD 32M anchored by WestBridge Capital established a benchmark in agritech / B2C category capital formation.</p>
+              <dl>
+                <dt>Year</dt><dd>2022</dd>
+                <dt>Round</dt><dd>Series B · USD 32M</dd>
+                <dt>Lead Investor</dt><dd>WestBridge Capital</dd>
+                <dt>Sector</dt><dd>Agritech · Consumer Tech · B2C</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="capital">
+          <span class="num">— 2020 —</span>
+          <div>
+            <div class="name">World One Forex <em>First institutional round · Family-office capital</em></div>
+          </div>
+          <p class="desc">Senior-led advisory on World One Forex's first institutional capital round, anchored by a Delhi-based family office, with parallel engagement of additional family offices for a subsequent larger round.</p>
+          <div class="tags">
+            <span class="tag">Financial Services</span>
+            <span class="tag">Forex</span>
+            <span class="tag">Capital Raise</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>World One Forex is a fast-growing money-changer with USD 400M revenues, incubated by the V Krishnan family of the JustDial Group. Capital was directed toward technology infrastructure and operational efficiency, with an ambition to challenge incumbents in India's independent Forex segment.</p>
+              <dl>
+                <dt>Year</dt><dd>2020</dd>
+                <dt>Anchor Investor</dt><dd>Delhi-based family office</dd>
+                <dt>Sector</dt><dd>Financial Services · Forex</dd>
+                <dt>Use of capital</dt><dd>Technology, distribution, growth</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="ma">
+          <span class="num">— 2019 —</span>
+          <div>
+            <div class="name">Magus Customer Dialog → YT Infocom <em>Sole sell-side advisor</em></div>
+          </div>
+          <p class="desc">Senior-led advisory on the acquisition of Magus Customer Dialog Private Limited — a leading Indian CRM and customer-contact-centre business — by YT Infocom Pvt. Ltd. of the Mumbai-based YT Group.</p>
+          <div class="tags">
+            <span class="tag">Technology</span>
+            <span class="tag">CRM</span>
+            <span class="tag">Sell-Side</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>Magus, founded in 1989, was a pioneer in Indian CRM services with pan-India centres and a manpower base of 3,000. Promoters sought a partner to scale the platform under a succession structure. The transaction identified YT Infocom — backed by an award-winning team with prior IT/ITeS scale experience — as the preferred counterparty.</p>
+              <dl>
+                <dt>Date</dt><dd>October 2019</dd>
+                <dt>Role</dt><dd>Sole Sell-Side Advisor</dd>
+                <dt>Sector</dt><dd>Technology · CRM &amp; Customer Engagement</dd>
+                <dt>Counterparties</dt><dd>Magus Customer Dialog Pvt. Ltd.<br/>YT Infocom Pvt. Ltd.</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="mbo">
+          <span class="num">— 2019 —</span>
+          <div>
+            <div class="name">Babaji Snacks <em>Control transfer · MBO / MBI structure</em></div>
+          </div>
+          <p class="desc">Advisory on the transfer of control of the Babaji brand of Indian snacks — distributed across eleven North Indian states — to a billion-dollar Indian food &amp; snacks group, structured as a Management Buyout retaining the executive team with share ownership.</p>
+          <div class="tags">
+            <span class="tag">Consumer</span>
+            <span class="tag">Food &amp; Snacks</span>
+            <span class="tag">MBO</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>Babaji holds leadership status across packaged rusks, cookies, salted snacks, and sweets, supported by a well-nurtured distribution network. The MBO structure retained the executive team with share ownership while providing exit to non-contributing family owners — a model the firm continues to advance for Indian family-owned consumer businesses.</p>
+              <dl>
+                <dt>Year</dt><dd>2019</dd>
+                <dt>Structure</dt><dd>Management Buyout (MBO/MBI)</dd>
+                <dt>Sector</dt><dd>Consumer · Snacks &amp; Confectionery</dd>
+                <dt>Geography</dt><dd>11 North Indian states</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+
+        <li class="deal" data-cat="mbo cross">
+          <span class="num">— 2018 —</span>
+          <div>
+            <div class="name">Sage Metals → Delos Capital <em>Cross-border MBO · US buyout</em></div>
+          </div>
+          <p class="desc">Advisory on the management-buyout-led acquisition of Sage Metals Limited, India, by Delos Capital, a US buyout fund. Structure preserved operating continuity and positioned the platform for North American expansion against an existing revenue base of ₹300 Cr.</p>
+          <div class="tags">
+            <span class="tag">Industrials</span>
+            <span class="tag">MBO</span>
+            <span class="tag">Cross-Border</span>
+          </div>
+          <span class="arrow" aria-hidden="true">+</span>
+          <div class="deal-detail">
+            <div class="deal-detail-inner">
+              <p>The Management Buyout structure ensured continuity of leadership while enabling targeted recruits in the US market. Senior involvement extended to the post-deal team-building phase. The platform was positioned to materially accelerate revenues under new sponsorship.</p>
+              <dl>
+                <dt>Year</dt><dd>2018</dd>
+                <dt>Structure</dt><dd>Cross-border MBO</dd>
+                <dt>Sector</dt><dd>Industrials · Metals</dd>
+                <dt>Counterparties</dt><dd>Sage Metals Ltd. (India)<br/>Delos Capital (US)</dd>
+              </dl>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <p class="deals-note">
+        Selected representative experience. Includes mandates executed by Fusion Capital Advisors and senior-led transactions completed under prior firm affiliations. Deal values, dates, and counterparty disclosures provided on request, subject to confidentiality undertakings.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="leadership">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>04  —  Leadership</span></div>
+        <h2 class="section-title">Founders engaged <em>on every mandate.</em></h2>
+      </header>
+
+      <div class="leaders">
+        <article class="leader obs">
+          <span class="role">Co-Founder, CFA</span>
+          <h3>Vinmre Anand</h3>
+          <p class="bio">
+            Vinmre brings nineteen years of investment banking experience across mergers and acquisitions, private equity fundraising, joint ventures, and corporate strategic advisory. He has led mandates spanning technology start-ups, automotive components, consumer and FMCG, healthcare and diagnostics, pharmaceuticals, power electronics, leisure and travel, renewables, and broader industrials — engaging directly with founders, boards, and institutional decision-makers throughout execution.
+          </p>
+          <dl class="focus">
+            <dt>Practice</dt><dd>M&amp;A · PE Fundraising · JVs · Strategic Advisory</dd>
+            <dt>Disciplines</dt><dd>Sourcing, modelling, valuation, structuring, negotiation, diligence, agreements</dd>
+            <dt>Based</dt><dd>Delhi, India</dd>
+            <dt>Direct</dt><dd><a href="mailto:vinmre@fusioncapital.in">vinmre@fusioncapital.in</a></dd>
+          </dl>
+        </article>
+
+        <article class="leader obs">
+          <span class="role">Co-Founder</span>
+          <h3>Rajneesh Sehgal</h3>
+          <p class="bio">
+            <!-- ▼ Replace with Rajneesh's full bio when finalised. -->
+            Rajneesh co-leads the firm's transaction practice, with deep experience across sell-side and buy-side advisory, cross-border combinations, and strategic mandates for Indian and international corporates. His execution history spans technology M&amp;A, agritech and consumer-tech capital formation, and inbound aerospace and defence transactions into India.
+          </p>
+          <dl class="focus">
+            <dt>Practice</dt><dd>Cross-Border M&amp;A · Strategic Advisory · Execution</dd>
+            <dt>Disciplines</dt><dd>Origination, negotiation, structuring, stakeholder alignment</dd>
+            <dt>Based</dt><dd>Delhi, India</dd>
+            <dt>Direct</dt><dd><a href="mailto:rajneesh@fusioncapital.in">rajneesh@fusioncapital.in</a></dd>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip strip-2" aria-hidden="true">
+    <div class="container">
+      <p class="strip-quote">
+        Conviction is <span class="accent">earned</span>, not <em>claimed.</em>
+      </p>
+      <div class="strip-attr">— Sector Coverage</div>
+    </div>
+  </section>
+
+  <section class="section" id="sectors">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>05  —  Sector Coverage</span></div>
+        <h2 class="section-title">Where we have <em>conviction.</em></h2>
+      </header>
+    </div>
+
+    <div class="container">
+      <div class="sectors">
+        <div class="sector obs"><span class="num">01</span><span class="name">Industrials</span></div>
+        <div class="sector obs"><span class="num">02</span><span class="name">Consumer &amp; FMCG</span></div>
+        <div class="sector obs"><span class="num">03</span><span class="name">Packaging</span></div>
+        <div class="sector obs"><span class="num">04</span><span class="name">Technology &amp; CRM</span></div>
+        <div class="sector obs"><span class="num">05</span><span class="name">Logistics</span></div>
+        <div class="sector obs"><span class="num">06</span><span class="name">Healthcare &amp; Diagnostics</span></div>
+        <div class="sector obs"><span class="num">07</span><span class="name">Pharmaceuticals</span></div>
+        <div class="sector obs"><span class="num">08</span><span class="name">Auto &amp; Components</span></div>
+        <div class="sector obs"><span class="num">09</span><span class="name">Aerospace &amp; Defence</span></div>
+        <div class="sector obs"><span class="num">10</span><span class="name">Renewables</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section industry-deep">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>06  —  Industry Focus</span></div>
+        <h2 class="section-title">Where we go <em>deep.</em></h2>
+      </header>
+
+      <div class="industry-stack">
+        <article class="industry obs industry-priority">
+          <div class="industry-meta">
+            <span class="industry-num">i</span>
+            <span class="industry-flag">Priority Sector</span>
+          </div>
+          <h3>Aerospace &amp; Defence</h3>
+          <p class="industry-lede">
+            India's aerospace &amp; defence value chain is undergoing a structural reset — driven by indigenisation mandates, MRO localisation, and inbound capital from European and Japanese strategics seeking manufacturing footholds.
+          </p>
+          <p>
+            We advise on cross-border combinations, technology partnerships, and component-supply consolidation across precision fasteners, structural assemblies, avionics, and defence electronics. Our 2024 mandate to Poggiopolini Group on its India market entry via Aero Fasteners reflects the institutional depth we bring to inbound A&amp;D transactions.
+          </p>
+          <div class="industry-stats">
+            <div><span class="big">1</span><span class="small">Closed mandate</span></div>
+            <div><span class="big">3</span><span class="small">Active conversations</span></div>
+            <div><span class="big">EU · JP</span><span class="small">Live corridors</span></div>
+          </div>
+        </article>
+
+        <article class="industry obs">
+          <div class="industry-meta">
+            <span class="industry-num">ii</span>
+          </div>
+          <h3>Automotive &amp; Components</h3>
+          <p>
+            Tier-1 and Tier-2 component suppliers navigating EV transition, OEM consolidation, and global supply-chain realignment. Strategic counsel on technology licensing, capacity buyouts, and cross-border JVs with Japanese, Korean, and European principals.
+          </p>
+        </article>
+
+        <article class="industry obs">
+          <div class="industry-meta">
+            <span class="industry-num">iii</span>
+          </div>
+          <h3>Industrials &amp; Manufacturing</h3>
+          <p>
+            Mid-market industrials with proven cash generation and succession imperatives. Our experience spans metals, packaging, and precision engineering — including the Sage Metals cross-border MBO with Delos Capital and the UDI Sales packaging divestiture to AG Retail.
+          </p>
+        </article>
+
+        <article class="industry obs">
+          <div class="industry-meta">
+            <span class="industry-num">iv</span>
+            <span class="industry-flag flag-emerging">Emerging</span>
+          </div>
+          <h3>Energy Transition &amp; EV</h3>
+          <p>
+            Capital formation and strategic combinations across renewables, battery technology, charging infrastructure, and EV component manufacturing. Sector positioned for a multi-year cycle of consolidation as scale and capital intensity reset.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section" id="why">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>07  —  Why Fusion</span></div>
+        <h2 class="section-title">A boutique by <em>design.</em></h2>
+      </header>
+    </div>
+
+    <div class="container">
+      <div class="pillars">
+        <article class="pillar obs">
+          <span class="num">i</span>
+          <h3>Founder-led execution</h3>
+          <p>Mandates are run by partners, not handed to junior teams. The senior banker who pitches the work is the senior banker who closes it.</p>
+        </article>
+        <article class="pillar obs">
+          <span class="num">ii</span>
+          <h3>Senior attention, end-to-end</h3>
+          <p>From origination through diligence and documentation, attention is undivided. Volume is deliberately constrained.</p>
+        </article>
+        <article class="pillar obs">
+          <span class="num">iii</span>
+          <h3>Sector breadth, depth where it counts</h3>
+          <p>Coverage across ten-plus sectors, with concentrated expertise in industrials, consumer, technology, and cross-border combinations.</p>
+        </article>
+        <article class="pillar obs">
+          <span class="num">iv</span>
+          <h3>Strategic, not transactional</h3>
+          <p>We treat each engagement as a position to be defended over years, not a single fee event. Our advice reflects that horizon.</p>
+        </article>
+        <article class="pillar obs">
+          <span class="num">v</span>
+          <h3>Hands-on through close</h3>
+          <p>Modelling, term-sheet negotiation, diligence orchestration, legal-documentation oversight — executed in-house, with conviction.</p>
+        </article>
+        <article class="pillar obs">
+          <span class="num">vi</span>
+          <h3>Discretion as default</h3>
+          <p>We work quietly. Most of our best work is never publicly attributed, and that is by intention.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="insights">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>08  —  Insights</span></div>
+        <h2 class="section-title">Sector reads &amp; <em>deal commentary.</em></h2>
+      </header>
+
+      <div class="insights-grid">
+        <article class="insight obs" data-insight="aerospace">
+          <div class="insight-meta">
+            <span class="insight-cat">Sector Note</span>
+            <span class="insight-date">Q1 2026</span>
+          </div>
+          <h3>India's A&amp;D Indigenisation: The Inbound Capital Window</h3>
+          <p>European primes and Japanese strategics are recalibrating their India strategies. Component-supply consolidation is the near-term opportunity; structural assemblies and avionics joint-venture formation is the medium-term thesis.</p>
+          <span class="insight-link">Read perspective →</span>
+        </article>
+
+        <article class="insight obs" data-insight="mbo">
+          <div class="insight-meta">
+            <span class="insight-cat">Deal Trend</span>
+            <span class="insight-date">Q4 2025</span>
+          </div>
+          <h3>MBO Structures in Indian Family Businesses</h3>
+          <p>Succession-driven control transactions in mid-market consumer and industrials are accelerating. The MBO/MBI model — once private-equity-led — is increasingly preferred by Indian corporate acquirers.</p>
+          <span class="insight-link">Read perspective →</span>
+        </article>
+
+        <article class="insight obs" data-insight="crossborder">
+          <div class="insight-meta">
+            <span class="insight-cat">Market Commentary</span>
+            <span class="insight-date">Q4 2025</span>
+          </div>
+          <h3>Cross-Border Mid-Market: Where the Deals Are Closing</h3>
+          <p>The India-Italy and India-Japan industrial corridors continue to outperform headline cross-border M&amp;A volumes. Specialist component manufacturing remains the most active sub-segment.</p>
+          <span class="insight-link">Read perspective →</span>
+        </article>
+      </div>
+
+      <p class="insights-note">
+        Selected commentary. Full notes circulated to clients and counterparties on a private-distribution basis.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <header class="section-header">
+        <div class="marker"><span>09  —  Engage</span></div>
+        <h2 class="section-title">Explore strategic <em>options.</em></h2>
+      </header>
+
+      <div class="contact-grid">
+        <div class="obs">
+          <p class="contact-headline">
+            For sensitive mandates, write directly — <em><a href="mailto:vinmre@fusioncapital.in">vinmre@fusioncapital.in</a></em>
+          </p>
+        </div>
+
+        <div class="contact-card obs">
+          <dl>
+            <dt>Office</dt>
+            <dd>Delhi NCR, India<br/><span style="color:var(--muted)">Address available on request</span></dd>
+            <dt>Vinmre</dt>
+            <dd><a href="mailto:vinmre@fusioncapital.in">vinmre@fusioncapital.in</a></dd>
+            <dt>Rajneesh</dt>
+            <dd><a href="mailto:rajneesh@fusioncapital.in">rajneesh@fusioncapital.in</a></dd>
+            <dt>Practice</dt>
+            <dd>M&amp;A · Capital Raising · Strategic Advisory</dd>
+            <dt>Engagement</dt>
+            <dd>By referral and invitation</dd>
+          </dl>
+          <a href="mailto:vinmre@fusioncapital.in" class="btn-primary btn-on-light" data-magnet style="align-self:flex-start">
+            <span>Discuss a mandate</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Insight reading panel -->
+<div class="insight-overlay" id="insight-overlay" aria-hidden="true"></div>
+<aside class="insight-panel" id="insight-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="insight-title">
+
+  <button class="insight-close" id="insight-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <article class="insight-article" data-article="aerospace">
+    <header class="insight-article-head">
+      <div class="insight-article-meta">
+        <span class="insight-cat">Sector Note</span>
+        <span class="insight-date">Q1 2026 · 8 min read</span>
+      </div>
+      <h1 id="insight-title-aerospace">India's A&amp;D Indigenisation: The Inbound Capital Window</h1>
+      <p class="insight-lede">European primes and Japanese strategics are recalibrating their India strategies in real-time. The structural opportunity for inbound capital is now — and the window will not stay open indefinitely.</p>
+      <div class="insight-byline">
+        <span>By Vinmre Anand &amp; Rajneesh Sehgal</span>
+        <span class="byline-sep"></span>
+        <span>Fusion Capital Advisors</span>
+      </div>
+    </header>
+
+    <div class="insight-body">
+      <h2>The setup</h2>
+      <p>Three forces are converging on India's aerospace and defence value chain. First, sustained government commitment to indigenisation through the Defence Acquisition Procedure and the Strategic Partnership model has shifted procurement preference from imports to domestically-manufactured systems. Second, global primes — Airbus, Leonardo, Boeing, Mitsubishi Heavy Industries — are under pressure to localise content to retain access to one of the world's fastest-growing defence budgets. Third, the supplier base in India has matured beyond simple build-to-print into engineering-led manufacturing across precision components, structural assemblies, and avionics.</p>
+
+      <p>The result is a cycle of inbound capital formation that has only just begun. Our 2024 mandate to Poggiopolini Group on its India market entry through Aero Fasteners reflects this thesis at work: an Italian Tier-1 supplier seeking a domestic manufacturing footprint to participate in India's aerospace supply chain at the front end of the cycle.</p>
+
+      <h2>Where capital is moving</h2>
+      <p>We see three clear capital-formation patterns. <strong>Acquisitions of established Indian Tier-1 and Tier-2 suppliers</strong> by European primes seeking immediate scale — typically valued on revenue-multiple or DCF basis given long-cycle order books. <strong>Joint ventures and minority investments</strong> by Japanese strategics with longer time horizons and a preference for technology-transfer-led partnerships. And <strong>greenfield majority partnerships</strong> structured as the Poggiopolini-Aero Fasteners transaction, where a European principal takes control of a domestic platform to build manufacturing capability from the ground up.</p>
+
+      <h2>The medium-term thesis</h2>
+      <p>The component-supply consolidation phase is well underway. The next eighteen to twenty-four months will see structural assemblies and avionics joint-venture formation — typically larger, more complex transactions with deeper technology-transfer components and longer execution timelines. Deal sizes will scale from the current sub-USD 50M typical envelope to USD 100-300M as the platforms underpinning these JVs require greater operational sophistication.</p>
+
+      <h2>What we advise sponsors</h2>
+      <p>Three practical considerations. First, regulatory clearance pathways are non-trivial and must be modelled into transaction timelines from term-sheet stage — not as a post-signing diligence item. Second, intellectual property structuring requires deliberate attention given India's IP regime peculiarities for defence-classified technology. Third, operational integration in the post-closing phase is where most cross-border A&amp;D transactions stumble; advisor continuity from term-sheet through 100-day plan is materially valuable.</p>
+
+      <p class="insight-pullquote">
+        The window is not closed. But it is narrower than the deal flow numbers would suggest.
+      </p>
+
+      <h2>Where we have conviction</h2>
+      <p>Precision fasteners, structural sub-assemblies, defence electronics, and MRO-adjacent component manufacturing remain our highest-conviction sub-segments. We continue to advise on inbound mandates with Italian, French, and Japanese principals, with active engagements totalling more than a billion in combined enterprise value across the live pipeline.</p>
+    </div>
+
+    <footer class="insight-article-foot">
+      <p>For a confidential discussion of opportunities in India's aerospace &amp; defence sector, write to <a href="mailto:vinmre@fusioncapital.in">vinmre@fusioncapital.in</a>.</p>
+    </footer>
+  </article>
+
+  <article class="insight-article" data-article="mbo" hidden>
+    <header class="insight-article-head">
+      <div class="insight-article-meta">
+        <span class="insight-cat">Deal Trend</span>
+        <span class="insight-date">Q4 2025 · 6 min read</span>
+      </div>
+      <h1>MBO Structures in Indian Family Businesses</h1>
+      <p class="insight-lede">Succession-driven control transactions in India's mid-market consumer and industrials sectors are accelerating. The Management Buyout model is no longer a private-equity preserve — Indian corporate acquirers are now its most enthusiastic adopters.</p>
+      <div class="insight-byline">
+        <span>By Vinmre Anand &amp; Rajneesh Sehgal</span>
+        <span class="byline-sep"></span>
+        <span>Fusion Capital Advisors</span>
+      </div>
+    </header>
+
+    <div class="insight-body">
+      <h2>Why now</h2>
+      <p>India's first generation of post-liberalisation entrepreneurs is approaching an inflection point. Founders who built businesses through the 1990s and early 2000s are reckoning with succession decisions in earnest, and the question of "who runs the business after me" is reshaping deal structuring in the mid-market. Where private equity once dominated the buyout conversation, Indian corporate strategics with capital and a category-extension thesis are now equally credible counterparties.</p>
+
+      <p>Our 2019 mandate on the Babaji Snacks transfer of control to a billion-dollar Indian food &amp; snacks group — structured as a Management Buyout retaining the executive team with share ownership while providing exit to non-contributing family owners — was an early example of what is now becoming a recognisable pattern.</p>
+
+      <h2>The MBO playbook for family businesses</h2>
+      <p>Three ingredients consistently appear. <strong>Continuity of operating leadership</strong> — the executive team continues post-closing, typically with rolled equity and clearly defined performance milestones. <strong>Exit liquidity for non-contributing family owners</strong> — those without operational involvement are bought out cleanly, removing future governance friction. <strong>Strategic acquirer or sponsor capital</strong> — providing the equity cheque, the governance overlay, and ongoing growth capital.</p>
+
+      <p>What's changed in the past three years is the third ingredient. Indian corporates with proven category execution and capital availability are now winning these processes against private-equity bidders, particularly when the seller prioritises strategic continuity over headline price.</p>
+
+      <h2>Where the model fits best</h2>
+      <p>Mid-market consumer brands with regional distribution strength, mid-market industrials with proven cash generation, and family-owned businesses where the second generation is uninterested in operational succession — these are the highest-fit categories. The model becomes harder when the founder remains operationally critical and there is no credible successor inside the executive team.</p>
+
+      <p class="insight-pullquote">
+        Indian owners are now less emotional about retaining majority ownership in value-enhancing collaborative structures with trade partners and private equity funds.
+      </p>
+
+      <h2>What sponsors should expect</h2>
+      <p>Process timelines for family-business MBOs typically run 7-9 months from mandate to close, materially longer than standard PE buyouts because of the relationship and trust-building requirement. Valuation expectations are increasingly anchored to strategic-acquirer benchmarks rather than financial-buyer multiples, particularly for businesses with category leadership in their geography.</p>
+    </div>
+
+    <footer class="insight-article-foot">
+      <p>For confidential discussions on succession-driven transactions, write to <a href="mailto:rajneesh@fusioncapital.in">rajneesh@fusioncapital.in</a>.</p>
+    </footer>
+  </article>
+
+  <article class="insight-article" data-article="crossborder" hidden>
+    <header class="insight-article-head">
+      <div class="insight-article-meta">
+        <span class="insight-cat">Market Commentary</span>
+        <span class="insight-date">Q4 2025 · 5 min read</span>
+      </div>
+      <h1>Cross-Border Mid-Market: Where the Deals Are Closing</h1>
+      <p class="insight-lede">The India-Italy and India-Japan industrial corridors continue to outperform headline cross-border M&amp;A volumes. Specialist component manufacturing remains the most active sub-segment, and the pattern is structural rather than cyclical.</p>
+      <div class="insight-byline">
+        <span>By Vinmre Anand &amp; Rajneesh Sehgal</span>
+        <span class="byline-sep"></span>
+        <span>Fusion Capital Advisors</span>
+      </div>
+    </header>
+
+    <div class="insight-body">
+      <h2>The pattern</h2>
+      <p>Headline cross-border M&amp;A volumes into India have been mixed across 2024 and 2025. But beneath the headline, two corridors have continued to deliver consistent transaction flow: India-Italy in industrials and aerospace, and India-Japan in automotive components and precision engineering. Both corridors share characteristics that explain their resilience — established corporate familiarity, complementary manufacturing capabilities, and aligned long-term strategic intent on both sides.</p>
+
+      <h2>Why Italy</h2>
+      <p>Italian industrial groups bring engineering depth in precision components, aerospace structures, and specialist machinery — all categories where India is scaling rapidly but lacks the heritage know-how. Italian principals have shown willingness to commit to majority structures with operating control, which simplifies execution. The Poggiopolini-Aero Fasteners transaction we advised in 2024 reflects this dynamic in its purest form.</p>
+
+      <h2>Why Japan</h2>
+      <p>Japanese strategics historically operate on longer time horizons than Western buyout sponsors, which aligns well with the multi-year integration cycles required in Indian manufacturing. Joint-venture and minority structures are preferred, with technology transfer and operational know-how flowing in exchange for market access. Automotive component manufacturers — particularly in EV-adjacent and specialist machining segments — have been the most active sub-category.</p>
+
+      <h2>What's not closing</h2>
+      <p>Generalist financial-buyer cross-border activity has slowed. Inflated valuation expectations from Indian sellers, combined with rising cost-of-capital headwinds for foreign sponsors, have taken many "would-be" deals out of contention. Deals that close are increasingly strategic in nature, where buyer commitment is anchored to specific operational synergies rather than multiple arbitrage.</p>
+
+      <p class="insight-pullquote">
+        Strategic cross-border transactions are closing. Financial cross-border transactions are not.
+      </p>
+
+      <h2>Outlook into 2026</h2>
+      <p>We expect continued deal flow in the Italy-India and Japan-India corridors, with potential acceleration in two specific sub-segments: aerospace structural assemblies and EV-adjacent automotive components. France-India and Germany-India industrial activity should reaccelerate as European corporates complete current restructuring cycles. The US-India corridor is harder to call given political and regulatory uncertainty, but mid-market industrial transactions in metals and specialty chemicals should continue.</p>
+    </div>
+
+    <footer class="insight-article-foot">
+      <p>For confidential discussions on cross-border mandates, write to <a href="mailto:vinmre@fusioncapital.in">vinmre@fusioncapital.in</a>.</p>
+    </footer>
+  </article>
+
+</aside>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-lockup">
+          <img src="logo.jpeg" alt="Fusion Capital Advisors — Investment Banking" class="footer-logo-img" />
+        </div>
+        <p>A boutique investment banking firm advising on mergers and acquisitions, capital raising, and strategic transactions. Senior-led. Selectively engaged. Delhi NCR, India.</p>
+      </div>
+        <p>A boutique investment banking firm advising on mergers and acquisitions, capital raising, and strategic transactions. Senior-led. Selectively engaged. Delhi NCR, India.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#firm">The Firm</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#transactions">Transactions</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+          <li><a href="#sectors">Industries</a></li>
+          <li><a href="#insights">Insights</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Engage</h4>
+        <ul>
+          <li><a href="mailto:vinmre@fusioncapital.in">vinmre@fusioncapital.in</a></li>
+          <li><a href="mailto:rajneesh@fusioncapital.in">rajneesh@fusioncapital.in</a></li>
+          <li><a href="#contact">Office &amp; details</a></li>
+          <li><a href="#why">Why Fusion</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ft-mark">Fusion <em>Capital</em></div>
+
+    <div class="ft-meta">
+      <span>© <span id="year"></span> Fusion Capital Advisors. All rights reserved.</span>
+      <span class="signature">Site by Shaurya Caroli</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const curtain = document.getElementById('curtain');
+  window.addEventListener('load', () => {
+    setTimeout(() => curtain.classList.add('lifted'), 700);
+    setTimeout(() => curtain.style.display = 'none', 2000);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const drawer = document.getElementById('mobile-drawer');
+  const menuBtn = document.getElementById('menu-btn');
+  const drawerClose = document.getElementById('drawer-close');
+  const openDrawer = () => {
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden','false');
+    menuBtn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeDrawer = () => {
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden','true');
+    menuBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  };
+  menuBtn.addEventListener('click', openDrawer);
+  drawerClose.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', closeDrawer));
+
+  const header = document.getElementById('site-header');
+  const hero = document.getElementById('hero');
+  const headerObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio > 0.3) {
+        header.classList.add('is-dark');
+      } else {
+        header.classList.remove('is-dark');
+      }
+    });
+  }, { threshold: [0, 0.3, 0.6, 1] });
+  headerObs.observe(hero);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.obs').forEach(el => io.observe(el));
+
+  const tickerTrack = document.getElementById('ticker-track');
+  tickerTrack.innerHTML = tickerTrack.innerHTML + tickerTrack.innerHTML;
+
+  const chips = document.querySelectorAll('.chip');
+  const deals = document.querySelectorAll('#deals .deal');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const f = chip.dataset.filter;
+      deals.forEach(d => {
+        const cats = (d.dataset.cat || '').split(' ');
+        const show = (f === 'all') || cats.includes(f);
+        d.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  deals.forEach(deal => {
+    deal.addEventListener('click', (e) => {
+      if (e.target.closest('a, button')) return;
+      deal.classList.toggle('is-open');
+    });
+  });
+
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (finePointer) {
+    document.body.classList.add('has-cursor');
+    const dot = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%,-50%)`;
+    });
+    const animateRing = () => {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
+      requestAnimationFrame(animateRing);
+    };
+    requestAnimationFrame(animateRing);
+
+    const grow = () => ring.classList.add('is-grow');
+    const shrink = () => ring.classList.remove('is-grow');
+    document.querySelectorAll('a, button, .deal, .chip, .stat, .cap, .sector, .pillar').forEach(el => {
+      el.addEventListener('mouseenter', grow);
+      el.addEventListener('mouseleave', shrink);
+    });
+  }
+
+  if (finePointer) {
+    document.querySelectorAll('[data-magnet]').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - (r.left + r.width / 2)) * 0.25;
+        const y = (e.clientY - (r.top  + r.height / 2)) * 0.35;
+        btn.style.setProperty('--magnet-x', x + 'px');
+        btn.style.setProperty('--magnet-y', y + 'px');
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.setProperty('--magnet-x', '0px');
+        btn.style.setProperty('--magnet-y', '0px');
+      });
+    });
+  }
+
+  /* ============================================================
+     INSIGHT PANEL — open/close + article switching
+     ============================================================ */
+  const insightPanel = document.getElementById('insight-panel');
+  const insightOverlay = document.getElementById('insight-overlay');
+  const insightClose = document.getElementById('insight-close');
+  const insightArticles = document.querySelectorAll('.insight-article');
+
+  const openInsight = (key) => {
+    // Show only the selected article
+    insightArticles.forEach(a => {
+      if (a.dataset.article === key) {
+        a.hidden = false;
+      } else {
+        a.hidden = true;
+      }
+    });
+    insightPanel.classList.add('is-open');
+    insightOverlay.classList.add('is-open');
+    insightPanel.setAttribute('aria-hidden', 'false');
+    insightOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('panel-open');
+    // Reset scroll to top of panel
+    insightPanel.scrollTop = 0;
+  };
+
+  const closeInsight = () => {
+    insightPanel.classList.remove('is-open');
+    insightOverlay.classList.remove('is-open');
+    insightPanel.setAttribute('aria-hidden', 'true');
+    insightOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('panel-open');
+  };
+
+  document.querySelectorAll('.insight[data-insight]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const key = card.dataset.insight;
+      openInsight(key);
+    });
+  });
+
+  insightClose.addEventListener('click', closeInsight);
+  insightOverlay.addEventListener('click', closeInsight);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && insightPanel.classList.contains('is-open')) {
+      closeInsight();
+    }
+  });
+</script>
+</body>
+</html>
